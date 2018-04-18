@@ -1,22 +1,20 @@
-
-window.onload = function(){
- 
-
-var jsonArray = [];
-$.getJSON( "json/data.json", function( data){
-  jsonArray = data;
-  console.log(jsonArray);
+$.ajax({ 
+    type: 'GET', 
+    url: 'https://jsonplaceholder.typicode.com/users', 
+    data: { get_param: 'value' }, 
+    dataType: 'json',
+    success: function (data) { 
+        $.each(data, function(index, element) {
+            $('tbody').append($('<tr>', {
+                text: element.id + "." 
+            }));
+			
+			$('tbody').append($('<td>', {
+                text: element.name
+            }));
+			
+        });
+    }
+	
 });
-
- var info = document.getElementById("info");
- var buttonShow = document.getElementById("buttonShow");
-  
-  buttonShow.onclick = function(){
-      for (var i = 0; i < jsonArray.length; i++);
-      info.innerHTML = jsonArray[i];
-      
-  };
-};
-
-
 
