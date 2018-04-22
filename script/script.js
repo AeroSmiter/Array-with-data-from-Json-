@@ -12,17 +12,22 @@ function load()
 	);	
 };
 
-$("#buttonShow").click(function(drawTable){
+function showTable(){
 	load();
-});
+}
 
-function succesResult(data) {
-	$.each(data, function (i,val) {
+$("#buttonShow").click(showTable);
+
+
+function drawTable(i,val) {
 		var tr = "<tr>"+
 			"<td>" + val.id + "</td>" +
 			"<td>" + val.name + "</td>" +
 			"<td>" + val.username + "</td>" +
 			"</tr>";
 		$(tr).appendTo("tbody");
-	});
+	}
+
+function succesResult(data){
+	$.each(data, drawTable);
 }
